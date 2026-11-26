@@ -14,7 +14,7 @@ ok("buttons >=44px",[...d.querySelectorAll(".acts button")].every(b=>b.getBoundi
 q('[data-a=done][data-i2="1"]').click();let S=JSON.parse(localStorage.getItem("awda.v1"));ok("done logged",Object.values(S.habits[1].log).some(x=>x.s=="done"));
 q('[data-undo]').click();q('[data-a=skip][data-i2="1"]').click();ok("why dialog opens",q("#sheet").open);q("[data-w='1']").click();S=JSON.parse(localStorage.getItem("awda.v1"));ok("reason saved",Object.values(S.habits[1].log).some(x=>x.why=="1"));
 q("#name").value="Pray";q("#tiny").value="One minute";q("#form").requestSubmit();S=JSON.parse(localStorage.getItem("awda.v1"));ok("add habit",S.habits.length==3);
-q('[data-edit="2"]').click();q("#en").value="Pray2";q("#ok").click();ok("edit habit",JSON.parse(localStorage.getItem("awda.v1")).habits[2].name=="Pray2");q("#tu")&&0;
+q('[data-edit="2"]').click();ok("ics button in edit",!!q("#ics"));q("#en").value="Pray2";q("#ok").click();ok("edit habit",JSON.parse(localStorage.getItem("awda.v1")).habits[2].name=="Pray2");q("#tu")&&0;
 q('[data-dot^="0|"]').click();ok("dot cycles",true);
 ok("stats: 9 days showed up",/[9٩]/.test(q("#stats .big").textContent));
 ok("heatmap 30 cells",d.querySelectorAll("#stats .heat")[0].children.length==30);
