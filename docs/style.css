@@ -41,3 +41,4 @@ button,.btn,.chip{min-height:44px}.x{min-width:44px}
 .dpick{display:flex;gap:6px;flex-wrap:wrap}.dchip input{position:absolute;opacity:0}.dchip span{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--inp);cursor:pointer}
 .dchip input:checked+span{background:var(--btn);color:var(--btnink);border-color:var(--btn)}.dchip input:focus-visible+span{outline:3px solid #1c6fd6;outline-offset:2px}
 .dot.skip{background:var(--skip)}form#form button.primary{margin-top:4px}
+.tip{background:var(--ret);border-radius:12px;padding:10px 12px;margin:8px 0 0}

@@ -2,7 +2,7 @@
 <title>Awda | عودة – a habit tracker that expects you to slip</title>
 <meta name="description" content="Awda is a forgiving habit tracker. No streaks to lose. Miss a day, and it helps you return with a tiny step, not guilt.">
 <script>(function(){try{var t=JSON.parse(localStorage.getItem("awda.v1")||"{}").theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");document.documentElement.dataset.theme=t}catch(e){}})()</script>
-<link rel="icon" href="favicon.svg"><link rel="stylesheet" href="style.css"></head><body>
+<link rel="icon" href="favicon.svg"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png"><meta name="theme-color" content="#1f3b36"><link rel="stylesheet" href="style.css"></head><body>
 <a class="skiplink" href="#today" data-i="skipTo">Skip to content</a>
 <header><div class="brand"><img src="logo.svg" alt="" width="36" height="36"><div><h1>Awda <span class="ar">عودة</span></h1><small data-i="tag">Built for the days you slip</small></div></div>
 <div class="hbtns"><button id="theme" class="ghost" aria-label="Theme" title="Theme">◐</button><button id="lang" class="ghost">العربية</button></div></header>
@@ -15,6 +15,7 @@
 <fieldset class="days"><legend data-i="daysL">Days</legend><div id="days" class="dpick"></div></fieldset>
 <button class="primary" data-i="addBtn">Add</button></form>
 <p class="hint" data-i="addHint">Give every habit a tiny version (2 minutes or less). It is what you do on a bad day. It still counts.</p></section>
+<section id="insights" class="card" hidden aria-live="polite"></section>
 <section class="card"><h2 data-i="weekly">This month, honestly</h2><div id="stats"></div></section>
 <section class="card small"><h2 data-i="data">Your data</h2><p class="hint" data-i="privacy">Everything stays in this browser. No account, no server, no tracking.</p>
 <div class="row"><button id="exp" class="ghost" data-i="exp">Export</button><label class="ghost btn"><span data-i="imp">Import</span><input id="imp" type="file" accept=".json" hidden></label><button id="wipe" class="ghost danger" data-i="wipe">Erase all</button></div></section>
