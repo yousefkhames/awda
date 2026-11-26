@@ -36,6 +36,7 @@ const $=s=>document.querySelector(s);const t=()=>T[S.lang];
 const day=(d=new Date())=>{const x=new Date(d);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
 const ago=n=>{const d=new Date();d.setDate(d.getDate()-n);return day(d)};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+if(window.matchMedia)matchMedia("(prefers-color-scheme:dark)").addEventListener("change",e=>{if(!S.theme)document.documentElement.dataset.theme=e.matches?"dark":"light"});
 function setLang(){const dp=$("#days");if(dp&&dp.dataset.l!=S.lang){dp.dataset.l=S.lang;dp.innerHTML=DN[S.lang].map((n,i)=>`<label class="dchip"><input type="checkbox" value="${i}" checked><span>${n}</span></label>`).join("")}if(S.theme)document.documentElement.dataset.theme=S.theme;document.documentElement.lang=S.lang;document.documentElement.dir=S.lang=="ar"?"rtl":"ltr";$("#lang").textContent=S.lang=="ar"?"English":"العربية";
 document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t()[e.dataset.i]);document.querySelectorAll("[data-ph]").forEach(e=>e.placeholder=t()[e.dataset.ph])}
 // log: h.log[date]={s:'done'|'tiny'|'skip',why?}
