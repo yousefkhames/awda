@@ -1,0 +1,4 @@
+I built Awda (عودة), a habit tracker for people who slip.
+Most trackers punish a missed day with a broken streak. Awda does the opposite: every habit has a tiny version that still counts, a miss triggers a gentle "welcome back" card, and the main metric is how often you return, not how long you stayed perfect.
+Arabic + English, free, open source, private (data never leaves your browser).
+Try it: LIVE_LINK   Code: GITHUB_LINK
