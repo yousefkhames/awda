@@ -29,10 +29,15 @@ dialog{border:0;border-radius:20px;padding:0;max-width:440px;width:calc(100% - 2
 .danger-b{background:#a4372b}label{display:block;margin:8px 0 4px;font-size:14px;color:var(--mut)}
 .brand h1{font-size:20px;margin:0;line-height:1.2}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.skip{color:var(--btnink);position:absolute;inset-inline-start:8px;top:8px;transform:translateY(-200%);background:var(--btn);padding:8px 12px;border-radius:8px;z-index:9}.skip:focus{transform:none}
+.skiplink{color:var(--btnink);position:absolute;inset-inline-start:8px;top:8px;transform:translateY(-200%);background:var(--btn);padding:8px 12px;border-radius:8px;z-index:9}.skiplink:focus{transform:none}
 :focus-visible{outline:3px solid #1c6fd6;outline-offset:2px}
 button,.btn,.chip{min-height:44px}.x{min-width:44px}
 .hint,.tiny,.brand small{color:var(--mut)}
 @media (prefers-reduced-motion:no-preference){button{transition:transform .12s,background .2s}button:active{transform:scale(.97)}}
 [dir=rtl] body{font-family:"Segoe UI",Tahoma,"Noto Naskh Arabic","Noto Sans Arabic",system-ui,sans-serif;line-height:1.7}[dir=rtl] .hint{font-size:15px}
 .hbtns{display:flex;gap:8px}
+.dot{padding:0;min-height:0;min-width:0;border:0;position:relative}.dot::after{content:"";position:absolute;inset:-15px -2px}.dot.off{opacity:.45}
+.dots{gap:6px}fieldset.days{border:0;padding:0;margin:0 0 8px}fieldset legend{font-size:14px;color:var(--mut);padding:0 0 4px}
+.dpick{display:flex;gap:6px;flex-wrap:wrap}.dchip input{position:absolute;opacity:0}.dchip span{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--inp);cursor:pointer}
+.dchip input:checked+span{background:var(--btn);color:var(--btnink);border-color:var(--btn)}.dchip input:focus-visible+span{outline:3px solid #1c6fd6;outline-offset:2px}
+.dot.skip{background:var(--skip)}form#form button.primary{margin-top:4px}
