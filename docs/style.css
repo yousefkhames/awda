@@ -28,8 +28,9 @@ dialog{border:0;border-radius:20px;padding:0;max-width:440px;width:calc(100% - 2
 .danger-b{background:#a4372b}label{display:block;margin:8px 0 4px;font-size:14px;color:var(--mut)}
 .brand h1{font-size:20px;margin:0;line-height:1.2}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 12px;border-radius:8px;z-index:9}.skip:focus{left:8px}
+.skip{position:absolute;inset-inline-start:8px;top:8px;transform:translateY(-200%);background:var(--ink);color:#fff;padding:8px 12px;border-radius:8px;z-index:9}.skip:focus{transform:none}
 :focus-visible{outline:3px solid #1c6fd6;outline-offset:2px}
 button,.btn,.chip{min-height:44px}.x{min-width:44px}
 .hint,.tiny,.brand small{color:#566863}
 @media (prefers-reduced-motion:no-preference){button{transition:transform .12s,background .2s}button:active{transform:scale(.97)}}
+[dir=rtl] body{font-family:"Segoe UI",Tahoma,"Noto Naskh Arabic","Noto Sans Arabic",system-ui,sans-serif;line-height:1.7}[dir=rtl] .hint{font-size:15px}
