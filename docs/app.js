@@ -41,7 +41,8 @@ function stats(h){const days=[];for(let i=29;i>=0;i--)days.push(ago(i));
  const showed=days.filter(hit).length;let misses=0,back=0;
  for(let i=29;i>=1;i--){const d=ago(i);if(d<h.created||!sched(h,d))continue;const prevHit=hit(ago(i+1))||ago(i+1)<h.created||!sched(h,ago(i+1));if(!hit(d)&&prevHit){misses++;if(hit(ago(i-1))||(i>1&&hit(ago(i-2))))back++}}
  return{showed,misses,back}}
-function render(){setLang();const L=t();const today=day();const el=$("#today");
+function render(){const ae=document.activeElement,fk=ae&&ae.dataset?["a","undo","edit","del","dot","tpl","shrink"].map(k=>ae.dataset[k]!==undefined?[k,ae.dataset[k],ae.dataset.i2]:null).find(Boolean):null;render0();if(fk){const q=fk[0]=="a"?`[data-a="${fk[1]}"][data-i2="${fk[2]}"]`:`[data-${fk[0]}="${fk[1]}"]`;const n=document.querySelector(q)||document.querySelector("#today .habit button");n&&n.focus({preventScroll:true})}}
+function render0(){setLang();const L=t();const today=day();const el=$("#today");
  el.className="card";el.innerHTML=`<h2>${L.today}</h2><p class="hint">${L.rule}</p>${weekLine()}`+(S.habits.length?"":`<p>${L.none}</p><p class="hint">${L.starter}</p><div class="chips">${TPL[S.lang].map((x,k)=>`<button type="button" class="chip" data-tpl="${k}">${esc(x[0])}</button>`).join("")}</div>`);
  const ret=[];
  S.habits.forEach((h,idx)=>{const e=h.log[today];const run=missedRun(h);if(!e&&sched(h,today)&&run>=1)ret.push({h,idx,run});
