@@ -77,6 +77,7 @@ $("#form").onsubmit=e=>{e.preventDefault();const n=$("#name").value.trim();if(!n
 $("#exp").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,1)],{type:"application/json"}));a.download="awda-backup.json";a.click()};
 $("#imp").onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(x=>{try{const d=clean(JSON.parse(x));if(!d){toast(t().badFile);return}sheet(`<h2>${t().imp}</h2><p>${t().impQ(N(d.habits.length))}</p><div class="row"><button class="primary" id="m">${t().merge}</button><button class="ghost" id="r">${t().replace}</button><button class="ghost" data-close>${t().cancel}</button></div>`,()=>{$("#m").onclick=e=>{e.preventDefault();d.habits.forEach(h=>{if(!S.habits.some(o=>o.name==h.name))S.habits.push(h)});closeSheet();render()};$("#r").onclick=e=>{e.preventDefault();S.habits=d.habits;closeSheet();render()}})}catch(_){toast(t().badFile)}})};
 $("#wipe").onclick=()=>{if(confirm(t().sureWipe)){S.habits=[];render()}};
+let lastDay=day();const tick=()=>{if(day()!=lastDay&&!$("#sheet").open){lastDay=day();render()}};document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});setInterval(tick,60000);
 if(typeof module!="undefined")module.exports={stats,missedRun};
 render();
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});

@@ -48,3 +48,4 @@ button,.btn,.chip{min-height:44px}.x{min-width:44px}
 @media (min-width:900px){header,main{max-width:1000px}main{grid-template-columns:1.4fr 1fr;align-items:start;column-gap:20px}.col{display:grid;gap:16px;align-content:start}}
 .toast{position:fixed;inset-inline:12px;bottom:calc(14px + env(safe-area-inset-bottom));margin:auto;max-width:420px;background:var(--btn);color:var(--btnink);border-radius:14px;padding:8px 8px 8px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 8px 30px #0004;z-index:5}.toast[hidden]{display:none}.toast button{background:transparent;color:var(--btnink);text-decoration:underline}
 .x[disabled]{opacity:.3;cursor:default}
+header{padding-top:max(16px,env(safe-area-inset-top))}footer{padding-bottom:calc(30px + env(safe-area-inset-bottom))}button,.dchip span,.dot{touch-action:manipulation;-webkit-tap-highlight-color:transparent}html{-webkit-text-size-adjust:100%}
