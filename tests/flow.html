@@ -20,6 +20,10 @@ ok("stats: 9 days showed up",/[9٩]/.test(q("#stats .big").textContent));
 ok("heatmap 30 cells",d.querySelectorAll("#stats .heat")[0].children.length==30);
 q('[data-mv="1|-1"]').click();ok("reorder",JSON.parse(localStorage.getItem("awda.v1")).habits[0].name=="Walk");
 q("#name").value="walk";q("#form").requestSubmit();ok("duplicate blocked",JSON.parse(localStorage.getItem("awda.v1")).habits.length==3&&!q("#toast").hidden);
+q('[data-a=done][data-i2="0"]')&&0;
+{const hb=JSON.parse(localStorage.getItem("awda.v1")).habits.length;const bt=q("#today .habit [data-a=done]");if(bt){bt.click();ok("toast with undo after done",!q("#toast").hidden&&!!q("#tu"));q("#tu").click();ok("undo restores",!q("#toast")||q("#toast").hidden)}}
+ok("weekday chips labelled",[...d.querySelectorAll("#days input")].every(i=>i.getAttribute("aria-label")));
+{const bad=new w.File(["{\"x\":1}"],"x.json");const dt=new w.DataTransfer();dt.items.add(bad);const inp=q("#imp");inp.files=dt.files;inp.dispatchEvent(new w.Event("change"))}
 q("#theme").click();ok("theme toggles",!!d.documentElement.dataset.theme);
 q("#lang").click();ok("lang switches",d.documentElement.lang!=LANG);
 ok("still no overflow after",d.documentElement.scrollWidth<=d.documentElement.clientWidth+1);
