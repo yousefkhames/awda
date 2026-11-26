@@ -42,3 +42,5 @@ button,.btn,.chip{min-height:44px}.x{min-width:44px}
 .dchip input:checked+span{background:var(--btn);color:var(--btnink);border-color:var(--btn)}.dchip input:focus-visible+span{outline:3px solid #1c6fd6;outline-offset:2px}
 .dot.skip{background:var(--skip)}form#form button.primary{margin-top:4px}
 .tip{background:var(--ret);border-radius:12px;padding:10px 12px;margin:8px 0 0}
+.tb{display:flex;flex-shrink:0}
+.week{font-weight:600;margin:8px 0 0}
