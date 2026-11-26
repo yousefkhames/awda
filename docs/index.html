@@ -1,10 +1,11 @@
 <!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Awda | عودة – a habit tracker that expects you to slip</title>
 <meta name="description" content="Awda is a forgiving habit tracker. No streaks to lose. Miss a day, and it helps you return with a tiny step, not guilt.">
+<script>try{var t=JSON.parse(localStorage.getItem("awda.v1")||"{}").theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="icon" href="favicon.svg"><link rel="stylesheet" href="style.css"></head><body>
 <a class="skip" href="#today" data-i="skipTo">Skip to content</a>
 <header><div class="brand"><img src="logo.svg" alt="" width="36" height="36"><div><h1>Awda <span class="ar">عودة</span></h1><small data-i="tag">Built for the days you slip</small></div></div>
-<div class="hbtns"><button id="lang" class="ghost">العربية</button></div></header>
+<div class="hbtns"><button id="theme" class="ghost" aria-label="Theme" title="Theme">◐</button><button id="lang" class="ghost">العربية</button></div></header>
 <main>
 <section id="return" hidden></section>
 <section id="today" aria-label="Today" tabindex="-1"></section>

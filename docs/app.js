@@ -24,7 +24,7 @@ const $=s=>document.querySelector(s);const t=()=>T[S.lang];
 const day=(d=new Date())=>{const x=new Date(d);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
 const ago=n=>{const d=new Date();d.setDate(d.getDate()-n);return day(d)};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-function setLang(){document.documentElement.lang=S.lang;document.documentElement.dir=S.lang=="ar"?"rtl":"ltr";$("#lang").textContent=S.lang=="ar"?"English":"العربية";
+function setLang(){if(S.theme)document.documentElement.dataset.theme=S.theme;document.documentElement.lang=S.lang;document.documentElement.dir=S.lang=="ar"?"rtl":"ltr";$("#lang").textContent=S.lang=="ar"?"English":"العربية";
 document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t()[e.dataset.i]);document.querySelectorAll("[data-ph]").forEach(e=>e.placeholder=t()[e.dataset.ph])}
 // log: h.log[date]={s:'done'|'tiny'|'skip',why?}
 function missedRun(h){ // consecutive past days with no done/tiny, ending yesterday, only after habit created
@@ -52,6 +52,7 @@ document.addEventListener("click",ev=>{const b=ev.target.closest("button");if(!b
  else if(b.dataset.undo){delete S.habits[b.dataset.undo].log[day()];render()}
  else if(b.dataset.del){const i=b.dataset.del;sheet(`<h2>${esc(S.habits[i].name)}</h2><p>${L.del}?</p><div class="row"><button class="danger-b" id="ok">${L.del}</button><button class="ghost" data-close>${L.cancel}</button></div>`,()=>{$("#ok").onclick=()=>{S.habits.splice(i,1);closeSheet();render()}})}
  else if(b.dataset.shrink){const h=S.habits[b.dataset.shrink];askTiny(h)}});
+$("#theme").onclick=()=>{const d=document.documentElement.dataset.theme=="dark"?"light":"dark";document.documentElement.dataset.theme=d;S.theme=d;save()};
 $("#lang").onclick=()=>{S.lang=S.lang=="ar"?"en":"ar";render()};
 $("#form").onsubmit=e=>{e.preventDefault();const n=$("#name").value.trim();if(!n)return;S.habits.push({name:n,tiny:$("#tiny").value.trim()||n+" (2 min)",created:day(),log:{}});e.target.reset();render()};
 $("#exp").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,1)],{type:"application/json"}));a.download="awda-backup.json";a.click()};
