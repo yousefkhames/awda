@@ -23,3 +23,6 @@ input[type=text],input:not([type]){font:inherit;width:100%;padding:10px 12px;bor
 .stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}.stat:last-child{border:0}
 .big{font-size:22px;font-weight:700}footer{text-align:center;color:var(--mut);padding:0 0 30px;font-size:14px}
 [dir=rtl] .acts,[dir=rtl] .row{flex-direction:row}
+dialog{border:0;border-radius:20px;padding:0;max-width:440px;width:calc(100% - 24px);background:var(--card);color:var(--ink);box-shadow:0 20px 60px #0004}dialog::backdrop{background:#0006}
+.sh{padding:20px}.sh h2{margin-top:0}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{background:#fff;color:var(--ink);border:1px solid var(--line)}.chip:hover{background:#fff3e2}
+.danger-b{background:#a4372b}label{display:block;margin:8px 0 4px;font-size:14px;color:var(--mut)}

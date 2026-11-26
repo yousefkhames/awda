@@ -3,13 +3,17 @@ today:"Today",none:"No habits yet. Add one below, and a tiny version of it.",ful
 undo:"Change",why:"What got in the way?",r:["Tired","Busy","Forgot","Unwell","Low mood","Plan too big"],
 ret1:n=>`Welcome back. "${n}" paused for a bit. That is normal, not failure.`,ret2:"Pick the smallest step you can do right now:",ret3:"Plan was too big? Shrink it.",shrink:"Shrink the habit",
 showed:"Days you showed up (last 30)",comebacks:"Comebacks",cbNote:"Times you returned after a miss. This is the skill that matters.",rate:"Return rate",rateNote:"Misses followed by a return within 2 days.",
-sureWipe:"Erase all habits on this device?",newTiny:"New tiny version:",del:"Remove",rule:"Rule: never miss twice. One miss is data, not failure.",nrm:"Rest"},
+sureWipe:"Erase all habits on this device?",newTiny:"New tiny version:",del:"Remove",rule:"Rule: never miss twice. One miss is data, not failure.",nrm:"Rest",cancel:"Cancel",save:"Save",optional:"Optional. It helps spot patterns, not to judge you.",skipAsk:"Skip"},
 ar:{tag:"مبني للأيام اللي بتتعثر فيها",add:"أضف عادة",addBtn:"إضافة",phName:"العادة، مثلاً: قراءة",phTiny:"النسخة الصغيرة، مثلاً: اقرأ صفحة واحدة",addHint:"لكل عادة نسخة صغيرة (دقيقتين أو أقل). هي اللي بتعملها في اليوم التقيل، وبتتحسب برضه.",weekly:"الشهر ده بصراحة",data:"بياناتك",privacy:"كل حاجة بتفضل في متصفحك. بدون حساب ولا سيرفر ولا تتبع.",exp:"تصدير",imp:"استيراد",wipe:"مسح الكل",foot:"مفتوح المصدر، رخصة MIT. مجاني دايماً.",
 today:"النهاردة",none:"مفيش عادات لسه. أضف واحدة تحت مع نسختها الصغيرة.",full:"عملتها",small:"النسخة الصغيرة",skip:"مش النهاردة",done:"تمام. اتحسبت.",tinyd:"النسخة الصغيرة. اتحسبت برضه.",skipd:"يوم راحة اتسجل. من غير عقاب.",
 undo:"تغيير",why:"إيه اللي وقف قدامك؟",r:["تعب","مشغول","نسيت","مريض","مزاج وحش","الخطة كبيرة"],
 ret1:n=>`حمد لله على السلامة. "${n}" وقفت شوية. ده عادي مش فشل.`,ret2:"اختار أصغر خطوة تقدر تعملها دلوقتي:",ret3:"الخطة كانت كبيرة؟ صغّرها.",shrink:"صغّر العادة",
 showed:"الأيام اللي ظهرت فيها (آخر 30)",comebacks:"مرات الرجوع",cbNote:"كام مرة رجعت بعد تعثر. دي المهارة المهمة.",rate:"معدل الرجوع",rateNote:"تعثر اتبعه رجوع في خلال يومين.",
-sureWipe:"تمسح كل العادات من الجهاز؟",newTiny:"النسخة الصغيرة الجديدة:",del:"حذف",rule:"القاعدة: ماتفوتش مرتين ورا بعض. مرة واحدة معلومة مش فشل.",nrm:"راحة"}};
+sureWipe:"تمسح كل العادات من الجهاز؟",newTiny:"النسخة الصغيرة الجديدة:",del:"حذف",rule:"القاعدة: ماتفوتش مرتين ورا بعض. مرة واحدة معلومة مش فشل.",nrm:"راحة",cancel:"إلغاء",save:"حفظ",optional:"اختياري. بيساعد نلاحظ الأنماط، مش نحاسبك.",skipAsk:"تخطي"}};
+function sheet(html,after){let d=$("#sheet");d.innerHTML=`<form method="dialog" class="sh">${html}</form>`;if(!d.open)d.showModal();d.querySelectorAll("[data-close]").forEach(b=>b.onclick=e=>{e.preventDefault();closeSheet()});after&&after()}
+function closeSheet(){const d=$("#sheet");if(d.open)d.close()}
+function askWhy(h){const L=t();sheet(`<h2>${L.why}</h2><p class="hint">${L.optional}</p><div class="chips">${L.r.map((x,i)=>`<button type="button" class="chip" data-w="${i}">${x}</button>`).join("")}</div><div class="row"><button class="ghost" data-close>${L.skipAsk}</button></div>`,()=>{document.querySelectorAll("[data-w]").forEach(c=>c.onclick=()=>{h.log[day()].why=c.dataset.w;closeSheet();render()})})}
+function askTiny(h){const L=t();sheet(`<h2>${L.shrink}</h2><label for="nt">${L.newTiny}</label><input id="nt" maxlength="60" value="${esc(h.tiny)}"><div class="row"><button class="primary" id="ok">${L.save}</button><button class="ghost" data-close>${L.cancel}</button></div>`,()=>{$("#nt").focus();$("#ok").onclick=e=>{e.preventDefault();const v=$("#nt").value.trim();if(v)h.tiny=v.slice(0,60);closeSheet();render()}})}
 const KEY="awda.v1";let S=JSON.parse(localStorage.getItem(KEY)||'null')||{lang:(navigator.language||"").startsWith("ar")?"ar":"en",habits:[]};
 const save=()=>localStorage.setItem(KEY,JSON.stringify(S));
 const $=s=>document.querySelector(s);const t=()=>T[S.lang];
@@ -40,10 +44,10 @@ function render(){setLang();const L=t();const today=day();const el=$("#today");
   return `<div class="stat"><div><b>${esc(h.name)}</b><div class="hint">${L.showed}</div></div><span class="big">${s.showed}</span></div><div class="stat"><div>${L.comebacks}<div class="hint">${L.cbNote}</div></div><span class="big">${s.back}</span></div><div class="stat"><div>${L.rate}<div class="hint">${L.rateNote}</div></div><span class="big">${rate}</span></div>`}).join(""):`<p class="hint">${L.none}</p>`;
  save()}
 document.addEventListener("click",ev=>{const b=ev.target.closest("button");if(!b)return;const L=t();
- if(b.dataset.a){const h=S.habits[b.dataset.i2];h.log[day()]={s:b.dataset.a};if(b.dataset.a=="skip"){const w=prompt(L.why+"\n"+L.r.join(" / "));if(w)h.log[day()].why=w}render()}
+ if(b.dataset.a){const h=S.habits[b.dataset.i2];h.log[day()]={s:b.dataset.a};if(b.dataset.a=="skip"){render();askWhy(h)}else render()}
  else if(b.dataset.undo){delete S.habits[b.dataset.undo].log[day()];render()}
- else if(b.dataset.del){if(confirm(L.del+"?")){S.habits.splice(b.dataset.del,1);render()}}
- else if(b.dataset.shrink){const h=S.habits[b.dataset.shrink];const v=prompt(L.newTiny,h.tiny);if(v){h.tiny=v.slice(0,60);render()}}});
+ else if(b.dataset.del){const i=b.dataset.del;sheet(`<h2>${esc(S.habits[i].name)}</h2><p>${L.del}?</p><div class="row"><button class="danger-b" id="ok">${L.del}</button><button class="ghost" data-close>${L.cancel}</button></div>`,()=>{$("#ok").onclick=()=>{S.habits.splice(i,1);closeSheet();render()}})}
+ else if(b.dataset.shrink){const h=S.habits[b.dataset.shrink];askTiny(h)}});
 $("#lang").onclick=()=>{S.lang=S.lang=="ar"?"en":"ar";render()};
 $("#form").onsubmit=e=>{e.preventDefault();const n=$("#name").value.trim();if(!n)return;S.habits.push({name:n,tiny:$("#tiny").value.trim()||n+" (2 min)",created:day(),log:{}});e.target.reset();render()};
 $("#exp").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,1)],{type:"application/json"}));a.download="awda-backup.json";a.click()};
