@@ -18,6 +18,15 @@
 
 </div>
 
+## Screenshots
+
+Captured from the live site (https://yousefkhames.github.io/awda/).
+
+<p>
+  <img src="docs/screenshots/live-desktop.png" alt="awda desktop view" width="640">
+  <img src="docs/screenshots/live-mobile.png" alt="awda mobile view" width="200">
+</p>
+
 ## Why
 Most trackers reward an unbroken streak and punish a missed day. That is when people quit. Awda is built around the day after a miss: it treats a slip as data, asks for the smallest next step, and measures how often you return instead of how long you stayed perfect.
 
